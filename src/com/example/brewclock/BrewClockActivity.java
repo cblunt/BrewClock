@@ -55,10 +55,11 @@ public class BrewClockActivity extends Activity implements OnClickListener {
     if(isBrewing)
       return;
     
+    brewTime = minutes;
+    
     if(brewTime < 1)
       brewTime = 1;
-    
-    brewTime = minutes;
+
     brewTimeLabel.setText(String.valueOf(brewTime) + "m");
   }
   
@@ -75,8 +76,6 @@ public class BrewClockActivity extends Activity implements OnClickListener {
    * Start the brew timer
    */
   public void startBrew() {
-    isBrewing = true;
-    
     // Create a new CountDownTimer to track the brew time
     brewCountDownTimer = new CountDownTimer(brewTime * 60 * 1000, 1000) {
       @Override
@@ -90,10 +89,13 @@ public class BrewClockActivity extends Activity implements OnClickListener {
         setBrewCount(brewCount + 1);
         
         brewTimeLabel.setText("Brew Up!");
+        startBrew.setText("Start");
       }
     };
     
     brewCountDownTimer.start();
+    startBrew.setText("Stop");
+    isBrewing = true;
   }
   
   /**
@@ -104,6 +106,7 @@ public class BrewClockActivity extends Activity implements OnClickListener {
       brewCountDownTimer.cancel();
     
     isBrewing = false;
+    startBrew.setText("Start");
   }
   
   /** Interface Implementations **/
