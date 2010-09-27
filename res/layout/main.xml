@@ -33,7 +33,7 @@
       android:id="@+id/brew_time_down"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="-" 
+      android:text="-"
       android:textSize="40dip" />
     <TextView
       android:id="@+id/brew_time"
