@@ -2,6 +2,7 @@ package com.example.brewclock;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Menu;
@@ -10,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class BrewClockActivity extends Activity implements OnClickListener {
@@ -19,11 +22,14 @@ public class BrewClockActivity extends Activity implements OnClickListener {
   protected Button startBrew;
   protected TextView brewCountLabel;
   protected TextView brewTimeLabel;
+  protected Spinner teaSpinner;
 
   protected int brewTime = 3;
   protected CountDownTimer brewCountDownTimer;
   protected int brewCount = 0;
   protected boolean isBrewing = false;
+  
+  protected TeaData teaData;
 
   /** Called when the activity is first created. */
   @Override
@@ -37,6 +43,7 @@ public class BrewClockActivity extends Activity implements OnClickListener {
     startBrew = (Button) findViewById(R.id.brew_start);
     brewCountLabel = (TextView) findViewById(R.id.brew_count_label);
     brewTimeLabel = (TextView) findViewById(R.id.brew_time);
+    teaSpinner = (Spinner) findViewById(R.id.tea_spinner);
 
     // Setup ClickListeners
     brewAddTime.setOnClickListener(this);
@@ -46,6 +53,33 @@ public class BrewClockActivity extends Activity implements OnClickListener {
     // Set the initial brew values
     setBrewCount(0);
     setBrewTime(3);
+    
+    // Set the TeaSpinner's data source
+    teaData = new TeaData(this);
+    
+    // Add some default tea data! (Adjust to your preference :)
+    if(teaData.count() == 0) {
+      teaData.insert("Earl Grey", 3); 
+      teaData.insert("Assam", 3);
+      teaData.insert("Jasmine Green", 1);
+      teaData.insert("Darjeeling", 2);
+    }
+    
+    // Fetch a Cursor containing all the teas in the database
+    Cursor cursor = teaData.all(this);
+    
+    SimpleCursorAdapter teaCursorAdapter = new SimpleCursorAdapter(
+      this,
+      android.R.layout.simple_spinner_item,
+      cursor,
+      new String[] { TeaData.NAME },
+      new int[] { android.R.id.text1 }
+    );
+    
+    teaCursorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    
+    // Finally, connect the Tea Spinner to the TeaData cursor.
+    teaSpinner.setAdapter(teaCursorAdapter);
   }
 
   /** Methods **/

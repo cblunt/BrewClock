@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -39,12 +40,6 @@ public class TeaData extends SQLiteOpenHelper {
         + ");";
     
     db.execSQL(sql);
-    
-    // Add some default tea data! (Adjust to your preference :)
-    insert("Earl Grey", 3); 
-    insert("Assam", 3);
-    insert("Jasmine Green", 1);
-    insert("Darjeeling", 2);
   }
 
   /* (non-Javadoc)
@@ -72,6 +67,15 @@ public class TeaData extends SQLiteOpenHelper {
     db.insertOrThrow(TABLE_NAME, null, values);
   }
 
+  /**
+   * Return a count of the number of teas in the database
+   * @return long
+   */
+  public long count() {
+    SQLiteDatabase db = getReadableDatabase();
+    return DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+  }
+  
   /**
    * Return all tea records in the database, ordered by name.
    * 
