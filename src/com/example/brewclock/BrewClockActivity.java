@@ -1,6 +1,7 @@
 package com.example.brewclock;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Menu;
@@ -71,7 +72,8 @@ public class BrewClockActivity extends Activity implements OnClickListener {
   public boolean onOptionsItemSelected(MenuItem item) {
     switch(item.getItemId()) {
       case R.id.manage_teas:
-        // TODO Display the tea manager activity.
+        Intent intent = new Intent(this, TeaManagerActivity.class);
+        startActivity(intent);
         return true;
 
       default:
