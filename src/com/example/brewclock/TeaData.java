@@ -1,7 +1,9 @@
 package com.example.brewclock;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -69,5 +71,22 @@ public class TeaData extends SQLiteOpenHelper {
     values.put(BREW_TIME, brewTime);
     
     db.insertOrThrow(TABLE_NAME, null, values);
+  }
+
+  /**
+   * Return all tea records in the database, ordered by name.
+   * 
+   * @param context The context that will manage the cursor. 
+   * @return {@link Cursor}
+   */
+  public Cursor all(Activity context) {
+    String[] from = { _ID, NAME, BREW_TIME };
+    String order = NAME;
+    
+    SQLiteDatabase db = getReadableDatabase();
+    Cursor cursor = db.query(TABLE_NAME, from, null, null, null, null, order);
+    context.startManagingCursor(cursor);
+    
+    return cursor;
   }
 }
