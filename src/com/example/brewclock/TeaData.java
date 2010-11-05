@@ -40,10 +40,10 @@ public class TeaData extends SQLiteOpenHelper {
     db.execSQL(sql);
     
     // Add some default tea data! (Adjust to your preference :)
-    insert(new Tea("Earl Grey", 3)); 
-    insert(new Tea("Assam", 3));
-    insert(new Tea("Jasmine Green", 1));
-    insert(new Tea("Darjeeling", 2));
+    insert("Earl Grey", 3); 
+    insert("Assam", 3);
+    insert("Jasmine Green", 1);
+    insert("Darjeeling", 2);
   }
 
   /* (non-Javadoc)
@@ -61,12 +61,12 @@ public class TeaData extends SQLiteOpenHelper {
    * @param brewTime The time (in minutes) the tea should be brewed.
    * @throws SQLException
    */
-  public void insert(Tea tea) {
+  public void insert(String name, int brewTime) {
     SQLiteDatabase db = getWritableDatabase();
     
     ContentValues values = new ContentValues();
-    values.put(NAME, tea.name);
-    values.put(BREW_TIME, tea.brewTime);
+    values.put(NAME, name);
+    values.put(BREW_TIME, brewTime);
     
     db.insertOrThrow(TABLE_NAME, null, values);
   }
