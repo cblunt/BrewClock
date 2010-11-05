@@ -7,21 +7,20 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.provider.BaseColumns;
 
 public class TeaData extends SQLiteOpenHelper {
   private static final String DATABASE_NAME = "teas.db";
   private static final int DATABASE_VERSION = 1;
   
-  private static final String TABLE_NAME = "teas";
+  public static final String TABLE_NAME = "teas";
 
-  private static final String _ID = BaseColumns._ID;
-  private static final String NAME = "name";
-  private static final String BREW_TIME = "brew_time";
+  public static final String _ID = BaseColumns._ID;
+  public static final String NAME = "name";
+  public static final String BREW_TIME = "brew_time";
   
-  public TeaData(Context context, String name, CursorFactory factory, int version) {
-    super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+  public TeaData(Context context) {
+    super(context, DATABASE_NAME, null, DATABASE_VERSION);
   }
 
   /** Overrides **/
@@ -76,16 +75,16 @@ public class TeaData extends SQLiteOpenHelper {
   /**
    * Return all tea records in the database, ordered by name.
    * 
-   * @param context The context that will manage the cursor. 
+   * @param activity The Activity that will manage the cursor. 
    * @return {@link Cursor}
    */
-  public Cursor all(Activity context) {
+  public Cursor all(Activity activity) {
     String[] from = { _ID, NAME, BREW_TIME };
     String order = NAME;
     
     SQLiteDatabase db = getReadableDatabase();
     Cursor cursor = db.query(TABLE_NAME, from, null, null, null, null, order);
-    context.startManagingCursor(cursor);
+    activity.startManagingCursor(cursor);
     
     return cursor;
   }
