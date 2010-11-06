@@ -2,6 +2,7 @@ package com.example.brewclock;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -20,6 +21,10 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class BrewClockActivity 
   extends Activity 
   implements OnClickListener, OnItemSelectedListener {
+  
+  /** Constants **/
+  protected static final String SHARED_PREFS_NAME = "brew_count_preferences"; 
+  protected static final String BREW_COUNT_SHARED_PREF = "brew_count";
   
   /** Properties **/
   protected Button brewAddTime;
@@ -56,7 +61,10 @@ public class BrewClockActivity
     startBrew.setOnClickListener(this);
 
     // Set the initial brew values
-    setBrewCount(0);
+    SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
+    brewCount = sharedPreferences.getInt(BREW_COUNT_SHARED_PREF, 0);
+    setBrewCount(brewCount);
+    
     setBrewTime(3);
     
     // Set the TeaSpinner's data source
@@ -149,6 +157,11 @@ public class BrewClockActivity
   public void setBrewCount(int count) {
     brewCount = count;
     brewCountLabel.setText(String.valueOf(brewCount));
+
+    // Update the brewCount and write the value to the shared preferences.
+    SharedPreferences.Editor editor = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE).edit();
+    editor.putInt(BREW_COUNT_SHARED_PREF, brewCount);
+    editor.commit();
   }
 
   /**
