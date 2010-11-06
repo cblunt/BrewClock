@@ -5,17 +5,23 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
-public class BrewClockActivity extends Activity implements OnClickListener {
+public class BrewClockActivity 
+  extends Activity 
+  implements OnClickListener, OnItemSelectedListener {
+  
   /** Properties **/
   protected Button brewAddTime;
   protected Button brewDecreaseTime;
@@ -80,6 +86,7 @@ public class BrewClockActivity extends Activity implements OnClickListener {
     
     // Finally, connect the Tea Spinner to the TeaData cursor.
     teaSpinner.setAdapter(teaCursorAdapter);
+    teaSpinner.setOnItemSelectedListener(this);
   }
 
   /** Methods **/
@@ -194,5 +201,23 @@ public class BrewClockActivity extends Activity implements OnClickListener {
       else
         startBrew();
     }
+  }
+  
+
+  /* (non-Javadoc)
+   * @see android.widget.AdapterView.OnItemSelectedListener#onItemSelected(android.widget.AdapterView, android.view.View, int, long)
+   */
+  public void onItemSelected(AdapterView<?> spinner, View view, int position, long id) {
+    if(spinner == teaSpinner) {
+      // Update the brew time with the selected tea's brewtime
+      Cursor cursor = (Cursor) spinner.getSelectedItem();
+      setBrewTime(cursor.getInt(2));
+    }
+  }
+
+  /* (non-Javadoc)
+   * @see android.widget.AdapterView.OnItemSelectedListener#onNothingSelected(android.widget.AdapterView)
+   */
+  public void onNothingSelected(AdapterView<?> spinner) {
   }
 }
