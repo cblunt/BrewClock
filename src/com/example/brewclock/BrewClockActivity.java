@@ -88,8 +88,6 @@ public class BrewClockActivity
     teaSpinner.setOnItemSelectedListener(this);
   }
 
-  /** Methods **/
-
   /** Overrides **/
 
   /*
@@ -120,6 +118,8 @@ public class BrewClockActivity
         return super.onOptionsItemSelected(item);
     }
   }
+
+  /** Methods **/
 
   /**
    * Set an absolute value for the number of minutes to brew. Has no effect if a brew

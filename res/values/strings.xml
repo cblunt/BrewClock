@@ -6,4 +6,9 @@
 
   <string name="tea_name_label">Tea Name</string>
   <string name="brew_time_label">Brew Time</string>
+  
+  <string name="save_tea_label">Save Tea</string>
+  <string name="save_tea_success">%s tea has been saved.</string>
+  <string name="invalid_tea_title">Tea could not be saved.</string>
+  <string name="invalid_tea_no_name">Enter a name for your tea.</string>
 </resources>
