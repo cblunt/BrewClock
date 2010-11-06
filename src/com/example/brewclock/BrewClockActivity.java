@@ -114,6 +114,10 @@ public class BrewClockActivity
         startActivity(intent);
         return true;
 
+      case R.id.reset_brew_count:
+        setBrewCount(0);
+        return true;
+        
       default:
         return super.onOptionsItemSelected(item);
     }
