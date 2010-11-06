@@ -3,4 +3,7 @@
   <string name="hello">Hello World, BrewClockActivity!</string>
   <string name="app_name">BrewClock</string>
   <string name="add_tea_label">Add Tea</string>
+
+  <string name="tea_name_label">Tea Name</string>
+  <string name="brew_time_label">Brew Time</string>
 </resources>
