@@ -2,5 +2,5 @@
 <resources>
   <string name="hello">Hello World, BrewClockActivity!</string>
   <string name="app_name">BrewClock</string>
-  <string name="manage_teas_label">Manage Teas</string>
+  <string name="add_tea_label">Add Tea</string>
 </resources>

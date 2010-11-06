@@ -7,7 +7,7 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".TeaManagerActivity" android:label="@string/manage_teas_label" />
+    <activity android:name=".AddTeaActivity" android:label="@string/add_tea_label" />
   </application>
   <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="4" />
 </manifest>

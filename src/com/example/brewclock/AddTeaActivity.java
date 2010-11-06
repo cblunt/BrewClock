@@ -3,7 +3,7 @@ package com.example.brewclock;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class TeaManagerActivity extends Activity {
+public class AddTeaActivity extends Activity {
   /** Overrides **/
   
   /* (non-Javadoc)

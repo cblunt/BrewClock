@@ -112,8 +112,8 @@ public class BrewClockActivity
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch(item.getItemId()) {
-      case R.id.manage_teas:
-        Intent intent = new Intent(this, TeaManagerActivity.class);
+      case R.id.add_tea:
+        Intent intent = new Intent(this, AddTeaActivity.class);
         startActivity(intent);
         return true;
 
