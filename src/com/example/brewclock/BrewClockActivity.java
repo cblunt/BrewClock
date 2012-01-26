@@ -116,19 +116,23 @@ public class BrewClockActivity
    */
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    switch(item.getItemId()) {
-      case R.id.add_tea:
-        Intent intent = new Intent(this, AddTeaActivity.class);
-        startActivity(intent);
-        return true;
-
-      case R.id.reset_brew_count:
-        setBrewCount(0);
-        return true;
+    int itemId = item.getItemId();
         
-      default:
-        return super.onOptionsItemSelected(item);
+    if(itemId == R.id.add_tea) {
+      Intent intent = new Intent(this, AddTeaActivity.class);
+      startActivity(intent);
     }
+    else if(itemId == R.id.reset_brew_count) {
+      setBrewCount(0);
+    }
+    else if(itemId == R.id.manage_teas) {
+      Intent intent = new Intent(this, TeaManagerActivity.class);
+      startActivity(intent);
+    }
+    else
+      return super.onOptionsItemSelected(item);
+    
+    return true;
   }
 
   /** Methods **/

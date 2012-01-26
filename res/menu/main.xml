@@ -2,4 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@+id/add_tea" android:title="@string/add_tea_label" />
   <item android:id="@+id/reset_brew_count" android:title="@string/reset_brew_count_label" />
+  <item android:id="@+id/manage_teas" android:title="@string/tea_manager_label" />
 </menu>
