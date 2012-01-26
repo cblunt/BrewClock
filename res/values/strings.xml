@@ -3,6 +3,7 @@
   <string name="hello">Hello World, BrewClockActivity!</string>
   <string name="app_name">BrewClock</string>
   <string name="add_tea_label">Add Tea</string>
+  <string name="tea_manager_label">Manage Teas</string>
   <string name="reset_brew_count_label">Reset Brew Count</string>
 
   <string name="tea_name_label">Tea Name</string>

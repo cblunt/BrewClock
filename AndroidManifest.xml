@@ -8,6 +8,7 @@
       </intent-filter>
     </activity>
     <activity android:name=".AddTeaActivity" android:label="@string/add_tea_label" />
+    <activity android:name=".TeaManagerActivity" android:label="@string/tea_manager_label" />
   </application>
   <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="4" />
 </manifest>
