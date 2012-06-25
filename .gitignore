@@ -1,2 +1,5 @@
 gen/
 bin/
+out/
+*.iml
+.idea
